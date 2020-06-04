@@ -6,16 +6,14 @@
 'use strict';
 
 
-var assert = require('assert');
-var fs = require('fs');
-var path  = require('path');
-
-var c = require('../lib/zlib/constants');
-var msg = require('../lib/zlib/messages');
-var zlib_deflate = require('../lib/zlib/deflate');
-var ZStream = require('../lib/zlib/zstream');
-
-var pako  = require('../index');
+import assert from 'assert';
+import fs from 'fs';
+import path from 'path';
+import c from '../lib/zlib/constants';
+import msg from '../lib/zlib/messages';
+import zlib_deflate from '../lib/zlib/deflate';
+import ZStream from '../lib/zlib/zstream';
+import pako from '../lib/main';
 
 
 var short_sample = 'hello world';

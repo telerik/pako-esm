@@ -4,11 +4,10 @@
 'use strict';
 
 
-var zlib        = require('zlib');
-var assert      = require('assert');
-
-var pako        = require('../index');
-var helpers     = require('./helpers');
+import zlib from 'zlib';
+import assert from 'assert';
+import pako from '../lib/main';
+import helpers from './helpers';
 var testInflate = helpers.testInflate;
 
 

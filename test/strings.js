@@ -4,14 +4,13 @@
 'use strict';
 
 
-var fs      = require('fs');
-var path    = require('path');
-var assert  = require('assert');
-var b       = require('buffer-from');
-
-var pako    = require('../index');
-var cmp     = require('./helpers').cmpBuf;
-var strings = require('../lib/utils/strings');
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
+import b from 'buffer-from';
+import pako from '../lib/main';
+import { cmpBuf as cmp } from './helpers';
+import strings from '../lib/utils/strings';
 
 // fromCharCode, but understands right > 0xffff values
 function fixedFromCharCode(code) {

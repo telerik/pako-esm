@@ -4,12 +4,11 @@
 'use strict';
 
 
-var fs      = require('fs');
-var path    = require('path');
-var assert  = require('assert');
-
-var pako    = require('../index');
-var cmp     = require('./helpers').cmpBuf;
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
+import pako from '../lib/main';
+import { cmpBuf as cmp } from './helpers';
 
 describe('ArrayBuffer', function () {
 

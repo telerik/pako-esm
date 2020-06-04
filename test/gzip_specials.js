@@ -4,13 +4,12 @@
 'use strict';
 
 
-var fs      = require('fs');
-var path    = require('path');
-var assert  = require('assert');
-
-var pako_utils = require('../lib/utils/common');
-var pako    = require('../index');
-var cmp     = require('./helpers').cmpBuf;
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
+import { arraySet, Buf8 } from '../lib/utils/common';
+import pako from '../lib/main';
+import { cmpBuf as cmp } from './helpers';
 
 
 function a2s(array) {
@@ -66,8 +65,8 @@ describe('Gzip special cases', function () {
 
     do {
       len = data.length - pos;
-      _in = new pako_utils.Buf8(len);
-      pako_utils.arraySet(_in, data, pos, len, 0);
+      _in = Buf8(len);
+      arraySet(_in, data, pos, len, 0);
 
       inflator = new pako.Inflate();
       strm = inflator.strm;

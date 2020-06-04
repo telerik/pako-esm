@@ -4,19 +4,17 @@
 'use strict';
 
 
-var assert = require('assert');
-
-var helpers = require('./helpers');
-
-var pako_utils = require('../lib/utils/common');
-var pako = require('../index');
+import assert from 'assert';
+import helpers from './helpers';
+import { arraySet, Buf8 } from '../lib/utils/common';
+import pako from '../lib/main';
 
 
 var samples = helpers.loadSamples();
 
 
 function randomBuf(size) {
-  var buf = new pako_utils.Buf8(size);
+  var buf = Buf8(size);
   for (var i = 0; i < size; i++) {
     buf[i] = Math.round(Math.random() * 256);
   }
@@ -38,8 +36,8 @@ function testChunk(buf, expected, packer, chunkSize) {
   pos = 0;
   for (i = 0; i < count; i++) {
     size = (buf.length - pos) < chunkSize ? buf.length - pos : chunkSize;
-    _in = new pako_utils.Buf8(size);
-    pako_utils.arraySet(_in, buf, pos, size, 0);
+    _in = Buf8(size);
+    arraySet(_in, buf, pos, size, 0);
     packer.push(_in, i === count - 1);
     pos += chunkSize;
   }

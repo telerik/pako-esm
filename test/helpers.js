@@ -1,13 +1,12 @@
 'use strict';
 
 
-var fs     = require('fs');
-var path   = require('path');
-var assert = require('assert');
-var b      = require('buffer-from');
-
-var pako_utils = require('../lib/utils/common');
-var pako  = require('../index');
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
+import b from 'buffer-from';
+import { setTyped, Buf8 } from '../lib/utils/common';
+import pako from '../lib/main';
 
 // Load fixtures to test
 // return: { 'filename1': content1, 'filename2': content2, ...}
@@ -40,7 +39,7 @@ function cmpBuf(a, b) {
 
   for (var i = 0, l = a.length; i < l; i++) {
     if (a[i] !== b[i]) {
-      //console.log('pos: ' +i+ ' - ' + a[i].toString(16) + '/' + b[i].toString(16));
+      console.log('pos: ' +i+ ' - ' + a[i].toString(16) + '/' + b[i].toString(16));
       return false;
     }
   }
@@ -66,7 +65,7 @@ function testSingle(zlib_method, pako_method, data, options) {
   // position (= no additional gzip headers used)
   if (options.ignore_os) zlib_result[9] = pako_result[9];
 
-  assert.deepEqual(new Uint8Array(pako_result), zlib_result);
+  assert.deepEqual(pako_result, zlib_result);
 }
 
 
@@ -76,11 +75,11 @@ function testSamples(zlib_method, pako_method, samples, options) {
     var data = samples[name];
 
     // with untyped arrays
-    pako_utils.setTyped(false);
+    setTyped(false);
     testSingle(zlib_method, pako_method, data, options);
 
     // with typed arrays
-    pako_utils.setTyped(true);
+    setTyped(true);
     testSingle(zlib_method, pako_method, data, options);
   });
 }
@@ -96,25 +95,20 @@ function testInflate(samples, inflateOptions, deflateOptions) {
     data = samples[name];
 
     // always use the same data type to generate sample
-    pako_utils.setTyped(true);
+    setTyped(true);
     deflated = pako.deflate(data, deflateOptions);
 
     // with untyped arrays
-    pako_utils.setTyped(false);
+    setTyped(false);
     inflated = pako.inflate(deflated, inflateOptions);
-    pako_utils.setTyped(true);
-
     assert.deepEqual(new Uint8Array(inflated), data);
 
     // with typed arrays
+    setTyped(true);
     inflated = pako.inflate(deflated, inflateOptions);
-
     assert.deepEqual(inflated, data);
   }
 }
 
 
-exports.cmpBuf = cmpBuf;
-exports.testSamples = testSamples;
-exports.testInflate = testInflate;
-exports.loadSamples = loadSamples;
+export { cmpBuf, testSamples, testInflate, loadSamples };

@@ -4,20 +4,16 @@
 'use strict';
 
 
-var zlib = require('zlib');
+import zlib from 'zlib';
+import pako from '../lib/main';
+import helpers from './helpers';
+import assert from 'assert';
+import fs from 'fs';
+import path from 'path';
+import b from 'buffer-from';
 
-var pako    = require('../index');
-var helpers = require('./helpers');
 var testSamples = helpers.testSamples;
-var assert  = require('assert');
-var fs      = require('fs');
-var path    = require('path');
-var b       = require('buffer-from');
-
-
-
 var samples = helpers.loadSamples();
-
 
 describe('Deflate defaults', function () {
 

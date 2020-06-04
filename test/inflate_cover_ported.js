@@ -6,15 +6,15 @@
 'use strict';
 
 
-var assert = require('assert');
+import assert from 'assert';
+import c from '../lib/zlib/constants';
+import msg from '../lib/zlib/messages';
 
-var c = require('../lib/zlib/constants');
-var msg = require('../lib/zlib/messages');
 //var zlib_stream = require('../lib/zlib/zstream');
-var zlib_inflate = require('../lib/zlib/inflate');
-var inflate_table = require('../lib/zlib/inftrees');
+import zlib_inflate from '../lib/zlib/inflate';
 
-var pako  = require('../index');
+import inflate_table from '../lib/zlib/inftrees';
+import pako from '../lib/main';
 
 
 function h2b(hex) {

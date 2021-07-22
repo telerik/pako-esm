@@ -13,6 +13,7 @@
   "sideEffects": false,
   "scripts": {
     "build-package": "rollup -c",
+    "build_fixtures": "node support/build_fixtures.js",
     "test": "vitest --run",
     "lint": "eslint",
     "prepare": "husky"

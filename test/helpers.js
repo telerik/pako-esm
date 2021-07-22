@@ -46,44 +46,6 @@ function cmpBuf(a, b) {
   return true;
 }
 
-
-// Helper to test deflate/inflate with different options.
-// Use zlib streams, because it's the only way to define options.
-//
-function testSingle(zlib_method, pako_method, data, options) {
-  var zlib_options = Object.assign({}, options);
-
-  // hack for testing negative windowBits
-  if (zlib_options.windowBits < 0) { zlib_options.windowBits = -zlib_options.windowBits; }
-
-  var zlib_result = zlib_method(b(data), zlib_options);
-  var pako_result = pako_method(data, options);
-
-  // One more hack: gzip header contains OS code, that can vary.
-  // Override OS code if requested. For simplicity, we assume it on fixed
-  // position (= no additional gzip headers used)
-  if (options.ignore_os) zlib_result[9] = pako_result[9];
-
-  assert.deepEqual(new Uint8Array(pako_result), zlib_result);
-}
-
-
-function testSamples(zlib_method, pako_method, samples, options) {
-
-  Object.keys(samples).forEach(function (name) {
-    var data = samples[name];
-
-    // with untyped arrays
-    setTyped(false);
-    testSingle(zlib_method, pako_method, data, options);
-
-    // with typed arrays
-    setTyped(true);
-    testSingle(zlib_method, pako_method, data, options);
-  });
-}
-
-
 function testInflate(samples, inflateOptions, deflateOptions) {
   var name, data, deflated, inflated;
 
@@ -109,4 +71,4 @@ function testInflate(samples, inflateOptions, deflateOptions) {
   }
 }
 
-export { cmpBuf, testSamples, testInflate, loadSamples };
+export { cmpBuf, testInflate, loadSamples };

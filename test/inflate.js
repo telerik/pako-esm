@@ -4,11 +4,8 @@
 import { assert, describe, it } from 'vitest';
 import zlib from 'zlib';
 import * as pako from '../lib/main';
-import * as helpers from './helpers';
-var testInflate = helpers.testInflate;
-
-
-var samples = helpers.loadSamples();
+import { testInflate, loadSamples } from './helpers';
+var samples = loadSamples();
 
 describe('Inflate defaults', function () {
 
@@ -20,9 +17,12 @@ describe('Inflate defaults', function () {
     testInflate(samples, { raw: true }, { raw: true });
   });
 
-  it('inflate raw from compressed samples', function () {
-    var compressed_samples = helpers.loadSamples('samples_deflated_raw');
-    helpers.testSamples(zlib.inflateRawSync, pako.inflateRaw, compressed_samples, {});
+  it('inflate raw from compressed samples', () => {
+    Object.values(loadSamples('samples_deflated_raw')).forEach(function (sample) {
+      const pako_result = pako.inflateRaw(sample);
+      const zlib_result = zlib.inflateRawSync(sample);
+      assert.deepStrictEqual(pako_result, new Uint8Array(zlib_result));
+    });
   });
 
 });

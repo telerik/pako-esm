@@ -36,7 +36,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@rollup/plugin-buble": "^0.21.1",
-    "@telerik/semantic-prerelease": "^1.0.0",
+    "@progress/semantic-prerelease": "^3.0.0",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^6.8.0",
     "husky": "^4.2.5",
@@ -71,11 +71,11 @@
     "fallbackTags": {
       "dev": "latest"
     },
-    "analyzeCommits": "@telerik/semantic-prerelease/analyzeCommits",
-    "generateNotes": "@telerik/semantic-prerelease/generateNotes",
-    "getLastRelease": "@telerik/semantic-prerelease/getLastRelease",
-    "verifyConditions": "@telerik/semantic-prerelease/verifyConditions",
-    "verifyRelease": "@telerik/semantic-prerelease/verifyRelease"
+    "analyzeCommits": "@progress/semantic-prerelease/analyzeCommits",
+    "generateNotes": "@progress/semantic-prerelease/generateNotes",
+    "getLastRelease": "@progress/semantic-prerelease/getLastRelease",
+    "verifyConditions": "@progress/semantic-prerelease/verifyConditions",
+    "verifyRelease": "@progress/semantic-prerelease/verifyRelease"
   },
   "files": [
     "dist",

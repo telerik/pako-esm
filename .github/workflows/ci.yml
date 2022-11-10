@@ -12,22 +12,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Setup NodeJS v10
-        uses: actions/setup-node@v2
-        with:
-          node-version: '10'
+    concurrency:
+        group: ${{ github.ref }}
+        cancel-in-progress: true
 
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.8.0
+    steps:
+      - name: Setup NodeJS v16
+        uses: actions/setup-node@v3
         with:
-          access_token: ${{ github.token }}
+          node-version: '16'
 
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install modules
-        run: npm install --no-audit --ignore-scripts
+        run: npm ci --no-audit --ignore-scripts
 
       - name: Lint
         run: npm run lint

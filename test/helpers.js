@@ -65,7 +65,7 @@ function testSingle(zlib_method, pako_method, data, options) {
   // position (= no additional gzip headers used)
   if (options.ignore_os) zlib_result[9] = pako_result[9];
 
-  assert.deepEqual(pako_result, zlib_result);
+  assert.deepEqual(new Uint8Array(pako_result), zlib_result);
 }
 
 

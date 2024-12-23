@@ -1,13 +1,10 @@
-/*global describe, it*/
-
-
 'use strict';
 
 
+import { assert, describe, it } from 'vitest';
 import zlib from 'zlib';
-import assert from 'assert';
-import pako from '../lib/main';
-import helpers from './helpers';
+import * as pako from '../lib/main';
+import * as helpers from './helpers';
 var testInflate = helpers.testInflate;
 
 

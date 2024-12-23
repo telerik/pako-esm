@@ -1,16 +1,12 @@
-/*global describe, it*/
-
-
 'use strict';
 
-
+import { assert, describe, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import assert from 'assert';
 import b from 'buffer-from';
-import pako from '../lib/main';
+import * as pako from '../lib/main';
 import { cmpBuf as cmp } from './helpers';
-import strings from '../lib/utils/strings';
+import * as strings from '../lib/utils/strings';
 
 // fromCharCode, but understands right > 0xffff values
 function fixedFromCharCode(code) {

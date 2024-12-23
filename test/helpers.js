@@ -1,12 +1,11 @@
 'use strict';
 
-
+import { assert } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import assert from 'assert';
 import b from 'buffer-from';
 import { setTyped, Buf8 } from '../lib/utils/common';
-import pako from '../lib/main';
+import * as pako from '../lib/main';
 
 // Load fixtures to test
 // return: { 'filename1': content1, 'filename2': content2, ...}
@@ -65,7 +64,7 @@ function testSingle(zlib_method, pako_method, data, options) {
   // position (= no additional gzip headers used)
   if (options.ignore_os) zlib_result[9] = pako_result[9];
 
-  assert.deepEqual(pako_result, zlib_result);
+  assert.deepEqual(new Uint8Array(pako_result), zlib_result);
 }
 
 
@@ -109,6 +108,5 @@ function testInflate(samples, inflateOptions, deflateOptions) {
     assert.deepEqual(inflated, data);
   }
 }
-
 
 export { cmpBuf, testSamples, testInflate, loadSamples };

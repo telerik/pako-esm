@@ -1,20 +1,16 @@
 // This tests are ported from original zlib
-
-/*global describe, it*/
-
-
 'use strict';
 
+import { assert, describe, it } from 'vitest';
 
-import assert from 'assert';
-import c from '../lib/zlib/constants';
+import * as c from '../lib/zlib/constants';
 import msg from '../lib/zlib/messages';
 
 //var zlib_stream = require('../lib/zlib/zstream');
-import zlib_inflate from '../lib/zlib/inflate';
+import * as zlib_inflate from '../lib/zlib/inflate';
 
 import inflate_table from '../lib/zlib/inftrees';
-import pako from '../lib/main';
+import * as pako from '../lib/main';
 
 
 function h2b(hex) {

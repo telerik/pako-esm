@@ -1,14 +1,11 @@
-/*global describe, it*/
-
-
 'use strict';
 
+import { assert, describe, it } from 'vitest';
 
 import fs from 'fs';
 import path from 'path';
-import assert from 'assert';
 import { arraySet, Buf8 } from '../lib/utils/common';
-import pako from '../lib/main';
+import * as pako from '../lib/main';
 import { cmpBuf as cmp } from './helpers';
 
 

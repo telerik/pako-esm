@@ -1,13 +1,10 @@
-/*global describe, it*/
-
-
 'use strict';
 
+import { assert, describe, it } from 'vitest';
 
 import zlib from 'zlib';
-import pako from '../lib/main';
-import helpers from './helpers';
-import assert from 'assert';
+import * as pako from '../lib/main';
+import * as helpers from './helpers';
 import fs from 'fs';
 import path from 'path';
 import b from 'buffer-from';

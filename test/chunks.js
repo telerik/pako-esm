@@ -1,14 +1,10 @@
-/*global describe, it*/
-
-
 'use strict';
 
+import { assert, describe, it } from 'vitest';
 
-import assert from 'assert';
-import helpers from './helpers';
 import { arraySet, Buf8 } from '../lib/utils/common';
-import pako from '../lib/main';
-
+import * as pako from '../lib/main';
+import * as helpers from './helpers';
 
 var samples = helpers.loadSamples();
 

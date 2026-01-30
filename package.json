@@ -11,6 +11,18 @@
   "jsdelivr": "./dist/pako.min.js",
   "unpkg": "./dist/pako.min.js",
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./dist/pako.mjs"
+      },
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./dist/pako.js"
+      }
+    }
+  },
   "scripts": {
     "build-package": "rollup -c",
     "build_fixtures": "node support/build_fixtures.js",
@@ -54,6 +66,7 @@
   },
   "files": [
     "dist",
-    "index.d.ts"
+    "index.d.ts",
+    "index.d.mts"
   ]
 }

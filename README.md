@@ -12,5 +12,4 @@ It is used by the Excel and PDF Export modules of [Progress Kendo UI](https://ww
 
 ## Notes
 
-* Should not be used in NodeJS environment. Use the original Pako library instead.
-* Not compatible with legacy browsers.
+* Use Pako 2.x for new projects as it already ships with ES modules.

@@ -10,6 +10,9 @@ export default [{
     }, {
         file: 'dist/pako-system.js',
         format: 'systemjs'
+    }, {
+        file: 'dist/pako.mjs',
+        format: 'esm'
     }],
     external: ['@progress/pako-esm']
 }, {
